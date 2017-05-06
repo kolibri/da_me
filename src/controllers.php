@@ -3,6 +3,7 @@
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Yaml\Yaml;
 use DaMe\DaMe;
 
 $app
@@ -26,7 +27,29 @@ $app
     ->value('year', (new \DateTime())->format('Y'))
     ->value('month', (new \DateTime())->format('m'))
     ->value('day', (new \DateTime())->format('d'))
+    ->assert('year', '\d\d\d\d')
+    ->assert('month', '\d\d')
+    ->assert('day', '\d\d')
     ->bind('random');
+
+$app
+    ->get('/fixtures', function (){
+
+        $fixtures = [];
+        for ($day = 0; $day < 365; $day++) {
+            $date = DateTime::createFromFormat('Y-z', '2001-'.$day);
+
+            $monthDay =  $date->format(DaMe::FORMAT_MONTH_DAY);
+            if (!array_key_exists($monthDay, $fixtures)) {
+                $fixtures[$monthDay] = [];
+            }
+
+            $fixtures[$monthDay][] = sprintf('Its been %s years since this day in %s', $day, 2001 - $day);
+        }
+
+        return new Response(Yaml::dump($fixtures));
+
+    });
 
 $app->error(
     function (\Exception $e, Request $request, $code) use ($app) {

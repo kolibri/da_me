@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace DaMe;
 
@@ -34,7 +34,7 @@ class Loader
         foreach ($raw as $monthDay => $dateMessages) {
             foreach ($dateMessages as $dateMessage) {
                 $monthDayArray = explode('-', $monthDay);
-                $buffer[] = new DateMessage($monthDayArray[0], $monthDayArray[1] ,$dateMessage);
+                $buffer[] = new DateMessage($monthDayArray[0], $monthDayArray[1], $dateMessage);
             }
         }
 
