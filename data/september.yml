@@ -1,3 +1,4 @@
 '09-26':
-    - {1905: '%s years ago, Albert Einstein publishes his first paper on the special theory of relativity.'}
-    - {1983: 'On this day %s years ago, Stanislav Petrov identifies of an incoming nuclear missile as a computer error and not an American first strike.'}
+#    - '{1905} years ago, Albert Einstein publishes his first paper on the special theory of relativity.'
+#    - 'On this day {1983} years ago, Stanislav Petrov identifies of an incoming nuclear missile as a computer error and not an American first strike.'
+    - '{2000} years since year 2000, and {1000} years since 1000'

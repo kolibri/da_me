@@ -5,6 +5,7 @@ namespace DaMe;
 class DaMe
 {
     const FORMAT_MONTH_DAY = 'm-d';
+    const FORMAT_YEAR_MONTH_DAY = 'Y-m-d';
 
     /** @var  Loader */
     private $loader;
@@ -18,10 +19,6 @@ class DaMe
         }
     }
 
-    /**
-     * @param \DateTime $date
-     * @return DateMessage
-     */
     public function getRandomDateMessage(\DateTime $date)
     {
         $messages = $this->getDateMessages($date);
@@ -42,6 +39,7 @@ class DaMe
 
     private function addDateMessage(DateMessage $dateMessage)
     {
-        $this->dateMessages[$dateMessage->getDate()->format(self::FORMAT_MONTH_DAY)][] = $dateMessage;
+        $monthDay = sprintf('%s-%s', $dateMessage->getMonth(), $dateMessage->getDay());
+        $this->dateMessages[$monthDay][] = $dateMessage;
     }
 }

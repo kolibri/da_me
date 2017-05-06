@@ -17,9 +17,11 @@ class Loader
         foreach ($finder as $item) {
             $buffer = array_merge(
                 $buffer,
-                Yaml::parse(file_get_contents(
-                    $item->getRealPath()
-                ))
+                Yaml::parse(
+                    file_get_contents(
+                        $item->getRealPath()
+                    )
+                )
             );
         }
 
@@ -31,12 +33,8 @@ class Loader
         $buffer = [];
         foreach ($raw as $monthDay => $dateMessages) {
             foreach ($dateMessages as $dateMessage) {
-                foreach ($dateMessage as $year => $message) {
-                    $buffer[] = new DateMessage(
-                        \DateTime::createFromFormat('Y-m-d', $year.'-'.$monthDay),
-                        $message
-                    );
-                }
+                $monthDayArray = explode('-', $monthDay);
+                $buffer[] = new DateMessage($monthDayArray[0], $monthDayArray[1] ,$dateMessage);
             }
         }
 
