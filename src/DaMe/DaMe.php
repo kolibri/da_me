@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace DaMe;
 
@@ -7,26 +7,25 @@ class DaMe
     const FORMAT_MONTH_DAY = 'm-d';
     const FORMAT_YEAR_MONTH_DAY = 'Y-m-d';
 
-    /** @var  Loader */
     private $loader;
     private $dateMessages;
 
-    public function __construct(Loader $loader, $data)
+    public function __construct(Loader $loader, string $dataPath)
     {
         $this->loader = $loader;
-        foreach ($this->loader->loadDataPath($data) as $dateMessage) {
+        foreach ($this->loader->loadDataPath($dataPath) as $dateMessage) {
             $this->addDateMessage($dateMessage);
         }
     }
 
-    public function getRandomDateMessage(\DateTime $date)
+    public function getRandomDateMessage(\DateTime $date): DateMessage
     {
         $messages = $this->getDateMessages($date);
         $rand = array_rand($messages); // Leave this for debugging ;)
         return $messages[$rand];
     }
 
-    public function getDateMessages(\DateTime $date)
+    public function getDateMessages(\DateTime $date): array
     {
         $monthDay = $date->format(self::FORMAT_MONTH_DAY);
 

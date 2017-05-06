@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace DaMe;
 
@@ -7,7 +7,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class Loader
 {
-    public function loadDataPath($path)
+    public function loadDataPath(string $path): array
     {
         $finder = new Finder();
         $finder->files()->in($path)->name('/\.yml$/');
@@ -28,7 +28,7 @@ class Loader
         return $this->flattenRawArray($buffer);
     }
 
-    private function flattenRawArray(array $raw)
+    private function flattenRawArray(array $raw): array
     {
         $buffer = [];
         foreach ($raw as $monthDay => $dateMessages) {

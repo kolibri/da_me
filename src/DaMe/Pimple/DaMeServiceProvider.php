@@ -1,8 +1,6 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace DaMe\Pimple;
-
 
 use DaMe\DaMe;
 use DaMe\Loader;

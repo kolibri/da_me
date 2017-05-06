@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace DaMe;
 
@@ -8,29 +8,29 @@ class DateMessage
     private $day;
     private $message;
 
-    public function __construct($month, $day, $message)
+    public function __construct(string $month, string $day, string $message)
     {
         $this->month = $month;
         $this->day = $day;
         $this->message = $message;
     }
 
-    public function getMonth()
+    public function getMonth(): string
     {
         return $this->month;
     }
 
-    public function getDay()
+    public function getDay(): string
     {
         return $this->day;
     }
 
-    public function getMessage()
+    public function getMessage():string
     {
         return $this->message;
     }
 
-    public function format(\DateTime $date)
+    public function format(\DateTime $date): string
     {
         $replace = [];
 
